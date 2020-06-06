@@ -114,6 +114,10 @@ public class Product {
 	public void setPurchaseCount(int purchaseCount) {
 		this.purchaseCount = purchaseCount;
 	}
+	
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
 
 	// Override
 	public String toString() {

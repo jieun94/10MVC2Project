@@ -49,7 +49,7 @@
 			
 			//document.detailForm.action='/product/addProduct';
 			//document.detailForm.submit();
-			$("form").attr("method" , "POST").attr("action" , "/product/addProduct").submit();
+			$("form").attr("method" , "POST").attr("action" , "/product/addProduct").attr("enctype","multipart/form-data").submit();
 		}
 		
 		$(function() {
@@ -208,7 +208,7 @@
 							<tr>
 								<td width="105">
 									<!-- <input type="file" name="fileName" class="ct_input_g" style="width:500px; height:20px">  -->
-									<input type="text" name="fileName" class="ct_input_g" style="width:500px; height:20px"> 
+									<input type="file" name="file" class="ct_input_g" style="width:500px; height:20px"> 
 								</td>
 								<td > </td>
 							</tr>
