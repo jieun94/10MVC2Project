@@ -59,6 +59,7 @@ CREATE TABLE review (
 	tran_no 					NUMBER 			NOT NULL REFERENCES transaction(tran_no),
 	prod_no 					NUMBER(16)		NOT NULL REFERENCES product(prod_no),
 	buyer_id 					VARCHAR2(20)	NOT NULL REFERENCES users(user_id),
+	review_name					VARCHAR2(100),
 	review_detail 				VARCHAR2(100),
 	image_file 					VARCHAR2(100),
 	reg_date 					DATE,

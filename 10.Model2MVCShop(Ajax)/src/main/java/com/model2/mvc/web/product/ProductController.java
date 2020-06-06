@@ -45,15 +45,20 @@ public class ProductController {
 	public String addProduct(@ModelAttribute("prod") Product prod, MultipartHttpServletRequest request) throws Exception {
 
 		System.out.println("/product/addProduct : GET / POST");
+		
 		Map<String, MultipartFile> files = request.getFileMap();
 		CommonsMultipartFile cmf = (CommonsMultipartFile) files.get("file");
-		//String path ="C:/Users/user/git/repository/07MiniProject/07.Model2MVCShop(URI,pattern)/WebContent/images/uploadFiles/"+cmf.getOriginalFilename();
-		String path ="C:/Users/home/git/10MVC2Project/10.Model2MVCShop(Ajax)/WebContent/images/uploadFiles";
 		
-		prod.setFileName(cmf.getOriginalFilename());
-	    	
-    	File f = new File(path);
-    	cmf.transferTo(f);
+		if (cmf.getSize()!=0) {
+			
+			//String path ="C:/Users/user/git/repository/07MiniProject/07.Model2MVCShop(URI,pattern)/WebContent/images/uploadFiles/"+cmf.getOriginalFilename();
+			String path ="C:/Users/home/git/10MVC2Project/10.Model2MVCShop(Ajax)/WebContent/images/uploadFiles"+cmf.getOriginalFilename();
+			
+			prod.setFileName(cmf.getOriginalFilename());
+		    	
+	    	File f = new File(path);
+	    	cmf.transferTo(f);
+		}
 		
 		prod.setManuDate(prod.getManuDate().replace("-", ""));
 		

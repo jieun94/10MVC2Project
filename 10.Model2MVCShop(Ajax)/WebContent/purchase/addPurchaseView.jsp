@@ -19,13 +19,15 @@
 		//Form 유효성 검증
 		var maxNum =$("input[name='maxNum']").val();
 		var tranNum =$("input[name='tranNum']").val();
-		
-		if(tranNum > maxNum){
-			alert("최대 수량을 초과하였습니다.");
+		alert(tranNum+">"+maxNum);
+		if(parseInt(tranNum) > parseInt(maxNum)){
+			alert("최대 수량을 초과하였습니다. 현재 재고는"+maxNum+"개 입니다.");
 			return;
-		} 
+		} else {
+			$("form").attr("method" , "POST").attr("action" , "/purchase/addPurchase").submit();
+		}
 		//document.addPurchase.submit();
-		$("form").attr("method" , "POST").attr("action" , "/purchase/addPurchase").submit();
+		
 	}
 	
 	$(function() {

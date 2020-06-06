@@ -8,6 +8,7 @@ public class Review {
 	private Purchase reviewTran;
 	private Product reviewProd;
 	private User reviewBuyer;
+	private String reviewName;
 	private String reviewDetail;
 	private String reviewFileName;
 	private Date reviewDate;
@@ -71,6 +72,14 @@ public class Review {
 		this.reviewDate = reviewDate;
 	}
 	
+	public String getReviewName() {
+		return reviewName;
+	}
+
+	public void setReviewName(String reviewName) {
+		this.reviewName = reviewName;
+	}
+
 	@Override
 	public String toString() {
 		return "ReviewVO [reviewNo=" + reviewNo + ", reviewTran=" + reviewTran
