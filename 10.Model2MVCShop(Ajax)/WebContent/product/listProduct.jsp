@@ -75,9 +75,10 @@
 										+prodNo
 										+'&menu=manage">수정</a></h3>';
 							} else if(menu=="search" && JSONData.prodNum!=0) {
-								displayValue+='<h3><a href="/purchase/addPurchase?prod_no='
+								displayValue+='<h3><a href="/product/getProduct?prodNo='
 										+prodNo
-										+'">구매</a>';
+										+'&menu=search'
+										+'">상세조회</a>';
 							}
 							
 							//Debug...									

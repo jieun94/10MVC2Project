@@ -20,6 +20,7 @@ import com.model2.mvc.common.Page;
 import com.model2.mvc.common.Search;
 import com.model2.mvc.service.domain.Product;
 import com.model2.mvc.service.product.ProductService;
+import com.model2.mvc.service.review.ReviewService;
 
 @Controller
 @RequestMapping("/product/*")
@@ -29,6 +30,8 @@ public class ProductController {
 	@Autowired
 	@Qualifier("productServiceImpl")
 	private ProductService prodService;
+	@Autowired
+	private ReviewService reviewService;
 	
 	//Constructor
 	public ProductController(){
@@ -74,19 +77,14 @@ public class ProductController {
 		
 		Product prod = prodService.getProduct(prodNo);
 		
+		// listReview 수행
+		Map<String , Object> map=reviewService.getReviewList(prodNo);
 		
+		// Model 과 View 연결
+		if (map!=null) {
+			model.addAttribute("list", map.get("list"));
+		}
 		model.addAttribute("prod", prod);
-//		User user = (User)session.getAttribute("user");
-//		
-//		if (user!=null) {
-//			String userId = ((User)session.getAttribute("user")).getUserId();
-//			
-//			if(userId.equals(user.getUserId())){
-//				user.setUserId(userId);
-//				//session.setAttribute("user", user); 
-//			}
-//
-//		}
 		
 		if (menu.contentEquals("manage")) {
 			return "forward:/product/updateProductView.jsp";

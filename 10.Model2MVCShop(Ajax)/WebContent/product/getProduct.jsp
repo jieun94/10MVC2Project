@@ -161,6 +161,6 @@
 	</tr>
 </table>
 </form>
-
+<jsp:include page="../review/listReview.jsp"></jsp:include>
 </body>
 </html>

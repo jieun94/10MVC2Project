@@ -1,5 +1,7 @@
 package com.model2.mvc.service.review.impl;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -24,6 +26,10 @@ public class ReviewDaoImpl implements ReviewDao {
 	
 	public void insertReview(Review review) throws Exception {
 		sqlSession.insert("ReviewMapper.insertReview", review);
+	}
+	
+	public List<Review> getReviewList(int prodNo) throws Exception {
+		return sqlSession.selectList("ReviewMapper.getReviewList", prodNo);
 	}
 
 }

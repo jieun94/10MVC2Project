@@ -83,6 +83,7 @@
 				<c:if test="${purchase.tranCode=='1  '}">구매완료</c:if>
 				<c:if test="${purchase.tranCode=='2  '}">배송중</c:if>
 				<c:if test="${purchase.tranCode=='3  '}">배송완료</c:if>
+				<c:if test="${purchase.tranCode=='4  '}">리뷰작성완료</c:if>
 			상태 입니다.</td>
 			<td></td>
 			<td align="left">
