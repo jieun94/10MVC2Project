@@ -98,103 +98,64 @@
 			<div class="page-header text-center">
 		       <h3 class=" text-info">상품정보 수정</h3>
 		    </div>
+		
+		    <!-- form Start /////////////////////////////////////-->
+			<form class="form-horizontal">
 			
-			
-			
+				<input type="hidden" name="prodNo" value="${prod.prodNo}"/>
+				
+			  	<div class="form-group">
+				    <label for="prodName" class="col-sm-offset-1 col-sm-3 control-label">상 품 명</label>
+				    <div class="col-sm-4">
+				      <input type="text" class="form-control" id="prodName" name="prodName" value="${prod.prodName}">
+				    </div>
+			  	</div>
+			  	
+			  	<div class="form-group">
+				    <label for="prodDetail" class="col-sm-offset-1 col-sm-3 control-label">상품상세정보</label>
+				    <div class="col-sm-4">
+				    	<input type="text" class="form-control" id="prodDetail" name="prodDetail" value="${prod.prodDetail}">
+				    </div>
+			  	</div>
+			  	
+			  	<div class="form-group">
+				    <label for="manuDate" class="col-sm-offset-1 col-sm-3 control-label">제조일자</label>
+				    <div class="col-sm-4">
+				    	<input type="date" class="form-control" id="manuDate" name="manuDate" value="${prod.manuDate}">
+				    </div>
+			  	</div>
+			  	
+			  	<div class="form-group">
+				    <label for="price" class="col-sm-offset-1 col-sm-3 control-label">가격</label>
+				    <div class="col-sm-4">
+				    	<input type="text" class="form-control" id="price" name="price" value="${prod.price}">
+				    </div>
+			  	</div>
+			  	
+			  	<div class="form-group">
+				    <label for="prodNum" class="col-sm-offset-1 col-sm-3 control-label">수량</label>
+				    <div class="col-sm-4">
+				    	<input type="text" class="form-control" id="prodNum" name="prodNum" value="${prod.prodNum}">
+				    </div>
+			  	</div>
+			  	
+			  	<div class="form-group">
+				    <label for="fileName" class="col-sm-offset-1 col-sm-3 control-label">상품이미지</label>
+				    <div class="col-sm-4">
+				    	<input type="text" class="form-control" id="fileName" name="fileName" 
+				    		<c:if test="${prod.fileName!=null }">
+								value="${prod.fileName}"
+							</c:if>>
+				    </div>
+			  	</div>
+			  	
+			  	<div class="form-group">
+			    	<div class="col-sm-offset-4  col-sm-4 text-right">
+			      		<button type="button" class="btn btn-primary"  >수정</button>
+				  		<button type="button" class="btn btn-primary"  >이전</button>
+			    	</div>
+			  	</div>
+			</form>
 		</div>
-		
-	    <!-- form Start /////////////////////////////////////-->
-		<form class="form-horizontal">
-		
-			<input type="hidden" name="prodNo" value="${prod.prodNo}"/>
-			
-		  	<div class="form-group">
-			    <label for="prodName" class="col-sm-offset-1 col-sm-3 control-label">상 품 명</label>
-			    <div class="col-sm-4">
-			      <input type="text" class="form-control" id="prodName" name="prodName" value="${prod.prodName}">
-			    </div>
-		  	</div>
-		  	
-		  	<div class="form-group">
-			    <label for="prodDetail" class="col-sm-offset-1 col-sm-3 control-label">상품상세정보</label>
-			    <div class="col-sm-4">
-			    	<input type="text" class="form-control" id="prodDetail" name="prodDetail" value="${prod.prodDetail}">
-			    </div>
-		  	</div>
-		  	
-		  	<div class="form-group">
-			    <label for="manuDate" class="col-sm-offset-1 col-sm-3 control-label">제조일자</label>
-			    <div class="col-sm-4">
-			    	<input type="date" class="form-control" id="manuDate" name="manuDate" value="${prod.manuDate}">
-			    </div>
-		  	</div>
-		  	
-		  	<div class="form-group">
-			    <label for="price" class="col-sm-offset-1 col-sm-3 control-label">가격</label>
-			    <div class="col-sm-4">
-			    	<input type="text" class="form-control" id="price" name="price" value="${prod.price}">
-			    </div>
-		  	</div>
-		  	
-		  	<div class="form-group">
-			    <label for="prodNum" class="col-sm-offset-1 col-sm-3 control-label">수량</label>
-			    <div class="col-sm-4">
-			    	<input type="text" class="form-control" id="prodNum" name="prodNum" value="${prod.prodNum}">
-			    </div>
-		  	</div>
-		  	
-		  	<div class="form-group">
-			    <label for="fileName" class="col-sm-offset-1 col-sm-3 control-label">상품이미지</label>
-			    <div class="col-sm-4">
-			    	<input type="text" class="form-control" id="fileName" name="fileName" 
-			    		<c:if test="${prod.fileName!=null }">
-							value="${prod.fileName}"
-						</c:if>>
-			    </div>
-		  	</div>
-		  	
-		  	<div class="form-group">
-		    	<div class="col-sm-offset-4  col-sm-4 text-right">
-		      		<button type="button" class="btn btn-primary"  >수정</button>
-			  		<button type="button" class="btn btn-primary"  >이전</button>
-		    	</div>
-		  	</div>
-
-<form name="detailForm">
-
-<table width="100%" border="0" cellspacing="0" cellpadding="0"	style="margin-top: 10px;">
-	<tr>
-		<td width="53%"></td>
-		<td align="right">
-			<table border="0" cellspacing="0" cellpadding="0">
-				<tr>
-					<td width="17" height="23">
-						<img src="/images/ct_btnbg01.gif" width="17" height="23"/>
-					</td>
-					<td background="/images/ct_btnbg02.gif" class="ct_btn01"	style="padding-top: 3px;">
-						<!-- <a href="javascript:fncAddProduct();">수정</a> -->
-						수정
-					</td>
-					<td width="14" height="23">
-						<img src="/images/ct_btnbg03.gif" width="14" height="23"/>
-					</td>
-					<td width="30"></td>
-					<td width="17" height="23">
-						<img src="/images/ct_btnbg01.gif"width="17" height="23"/>
-					</td>
-					<td background="/images/ct_btnbg02.gif" class="ct_btn01" style="padding-top: 3px;">
-						<a href="javascript:history.go(-1)">취소</a> 
-						<!-- 취소 -->
-					</td>
-					<td width="14" height="23">
-						<img src="/images/ct_btnbg03.gif" width="14" height="23"/>
-					</td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-</table>
-</form>
-
-</body>
+	</body>
 </html>

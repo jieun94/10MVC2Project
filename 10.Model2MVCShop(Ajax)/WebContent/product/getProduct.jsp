@@ -41,7 +41,7 @@
 			//============= "구매"  Event 연결 =============
 			$(function() {
 				//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-				$( "button.btn.btn-primary:contains('구매')" ).on("click" , function() {
+				$( "button.btn.btn-primary" ).on("click" , function() {
 					self.location = "/purchase/addPurchase?prod_no=${prod.prodNo}"
 				});
 			});	
@@ -49,7 +49,7 @@
 			//============= "이전"  Event 연결 =============
 			$(function() {
 				//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-				$( "button.btn.btn-primary:contains('이전')" ).on("click" , function() {
+				$( "button.btn.btn-default" ).on("click" , function() {
 					self.location = "javascript:history.go(-1)"
 				});
 			});	
@@ -117,7 +117,7 @@
 			  			<c:if test="${user.userId !=null }">
 			  				<button type="button" class="btn btn-primary">구매</button>
 			  			</c:if>
-			  			<button type="button" class="btn btn-primary">이전</button>
+			  			<button type="button" class="btn btn-default">이전</button>
 			  		</div>
 				</div>
 			

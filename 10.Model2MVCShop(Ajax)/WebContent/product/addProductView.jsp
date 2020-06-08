@@ -104,7 +104,7 @@
 			</div>
 			
 			<!-- form Start /////////////////////////////////////-->
-			<form name="detailForm" class="form-horizontal">
+			<form class="form-horizontal">
 				<div class="form-group">
 				    <label for="prodName" class="col-sm-offset-1 col-sm-3 control-label">»σ Η° Έν</label>
 				    <div class="col-sm-4">
