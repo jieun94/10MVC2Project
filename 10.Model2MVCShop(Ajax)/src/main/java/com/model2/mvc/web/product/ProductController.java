@@ -32,6 +32,8 @@ public class ProductController {
 	private ProductService prodService;
 	@Autowired
 	private ReviewService reviewService;
+//	@Autowired
+//	private String uploadPath;
 	
 	//Constructor
 	public ProductController(){
@@ -44,18 +46,27 @@ public class ProductController {
 	@Value("#{commonProperties['pageSize']}")
 	int pageSize;
 	
-	@RequestMapping(value="addProduct")
+	@RequestMapping(value="addProduct", method = RequestMethod.GET)
+	public String addProduct() throws Exception {
+
+		System.out.println("/product/addProduct : GET");
+		
+		return "forward:/product/addProductView.jsp";
+	}
+	
+	@RequestMapping(value="addProduct", method = RequestMethod.POST)
 	public String addProduct(@ModelAttribute("prod") Product prod, MultipartHttpServletRequest request) throws Exception {
 
-		System.out.println("/product/addProduct : GET / POST");
+		System.out.println("/product/addProduct : POST");
 		
 		Map<String, MultipartFile> files = request.getFileMap();
 		CommonsMultipartFile cmf = (CommonsMultipartFile) files.get("file");
 		
 		if (cmf.getSize()!=0) {
 			
-			//String path ="C:/Users/user/git/repository/07MiniProject/07.Model2MVCShop(URI,pattern)/WebContent/images/uploadFiles/"+cmf.getOriginalFilename();
-			String path ="C:/Users/home/git/10MVC2Project/10.Model2MVCShop(Ajax)/WebContent/images/uploadFiles"+cmf.getOriginalFilename();
+			String path ="C:/Users/user/git/repository/10MVC2Project/10.Model2MVCShop(Ajax)/WebContent/images/uploadFiles"+cmf.getOriginalFilename();
+			//String path ="C:/Users/home/git/10MVC2Project/10.Model2MVCShop(Ajax)/WebContent/images/uploadFiles"+cmf.getOriginalFilename();
+			//String path = uploadPath+cmf.getOriginalFilename();
 			
 			prod.setFileName(cmf.getOriginalFilename());
 		    	
@@ -87,6 +98,8 @@ public class ProductController {
 		model.addAttribute("prod", prod);
 		
 		if (menu.contentEquals("manage")) {
+			prod.setManuDate(prod.getManuDate().substring(0, 4)+"-"
+					+prod.getManuDate().substring(4 , 6)+"-"+prod.getManuDate().substring(6));
 			return "forward:/product/updateProductView.jsp";
 		} else {
 			return "forward:/product/getProduct.jsp";
