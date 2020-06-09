@@ -80,7 +80,7 @@ public class Review {
 		this.reviewName = reviewName;
 	}
 
-	//Override
+	@Override
 	public String toString() {
 		return "Review [reviewNo=" + reviewNo +", reviewName= "+reviewName+ ", reviewDetail="+reviewDetail 
 				+ ", reviewTran=" + reviewTran + ", reviewProd=" + reviewProd 

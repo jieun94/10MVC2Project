@@ -70,6 +70,9 @@ public class PurchaseController {
 		System.out.println("/purchase/addPurchase : POST");
 		
 		User user = (User)session.getAttribute("user");
+		
+		purchase.setPurchaseProd(product);
+		product = prodService.getProduct(purchase.getPurchaseProd().getProdNo());
 		purchase.setPurchaseProd(product);
 		purchase.setBuyer(user);
 		
@@ -118,9 +121,13 @@ public class PurchaseController {
 		System.out.println("/purchase/getPurchase : GET");
 		
 		purchase = purchaseService.getPurchase(tranNo);
+		Product product = prodService.getProduct(purchase.getPurchaseProd().getProdNo());
+		purchase.setPurchaseProd(product);
 		purchase.setPaymentOption(purchase.getPaymentOption().trim());
 		purchase.setTranCode(purchase.getTranCode().trim());
-		
+		if (purchase.getDivyDate()!=null) {
+			purchase.setDivyDate(purchase.getDivyDate().substring(0, 10));
+		}
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("forward:/purchase/getPurchase.jsp");
 		modelAndView.addObject("purchase",purchase);
@@ -137,7 +144,9 @@ public class PurchaseController {
 		purchase = purchaseService.getPurchase(tranNo);
 		purchase.setPaymentOption(purchase.getPaymentOption().trim());
 		purchase.setTranCode(purchase.getTranCode().trim());
-		
+		if (purchase.getDivyDate()!=null) {
+			purchase.setDivyDate(purchase.getDivyDate().substring(0, 10));
+		}
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("forward:/purchase/updatePurchaseView.jsp");
 		modelAndView.addObject("purchase",purchase);
@@ -169,11 +178,13 @@ public class PurchaseController {
 		
 		purchaseService.updateTranCode(purchase);
 		
+		purchase = purchaseService.getPurchase(purchase.getTranNo());
+		
 		ModelAndView modelAndView = new ModelAndView();
 		if (purchase.getTranCode().contentEquals("3")) {
 			modelAndView.setViewName("redirect:/purchase/listPurchase");
 		} else {
-			modelAndView.setViewName("redirect:/product/listProduct?menu=manage");
+			modelAndView.setViewName("redirect:/purchase/listSale?prodNo="+purchase.getPurchaseProd().getProdNo());
 		}
 		modelAndView.addObject("purchase",purchase);
 		return modelAndView;

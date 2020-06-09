@@ -29,10 +29,17 @@
 					, #{reviewName}, #{reviewDetail:VARCHAR} , SYSDATE, #{reviewFileName:VARCHAR})
 	</insert>
 	
-	<select  id="getReviewList"  parameterType="int"	resultMap="reviewSelectMap">
-		SELECT * FROM review r, users u
-		WHERE prod_no = #{value}
-		AND r.buyer_id = u.user_id
+	<select  id="getReviewList"  parameterType="hashmap"	resultMap="reviewSelectMap">
+		SELECT * 
+		FROM (		SELECT inner_table.* ,  ROWNUM AS row_seq  	
+					FROM (		SELECT 
+								r.*, u.user_name
+								FROM review r, users u
+								WHERE r.prod_no = #{prodNo}
+								AND r.buyer_id = u.user_id
+								ORDER BY r.reg_date DESC ) inner_table 	
+				WHERE ROWNUM &lt;= #{search.endRowNum} )
+		WHERE row_seq BETWEEN #{search.startRowNum} AND #{search.endRowNum}
 	</select>
 	
 	<select id="getReview" parameterType="int" resultMap="reviewSelectMap">
@@ -40,25 +47,11 @@
 		WHERE review_no = #{value}
 	</select>
 	
-	<select  id="getTotalCount"  parameterType="search"	 resultType="int">
+	<select  id="getTotalCount"  parameterType="int"	 resultType="int">
 	  	SELECT COUNT(*)
-	  	FROM(	SELECT * 
+	  	FROM(	SELECT *
 						FROM review
-						<if test="searchKeyword != null">
-							<where>
-								p.prod_no = t.prod_no(+) 
-								<if test="searchCondition == 0 and searchKeyword !='' ">
-						 			AND p.prod_no LIKE '%'||#{searchKeyword}||'%'
-								</if>
-								<if test="searchCondition == 1 and searchKeyword !='' ">
-						 			AND p.prod_name LIKE '%'||#{searchKeyword}||'%'
-								</if>
-								<if test="searchCondition == 2 and searchKeyword !='' ">
-						 			AND p.price LIKE '%'||#{searchKeyword}||'%'
-								</if>
-							</where>
-						</if> 
-						) countTable						
+						WHERE prod_no = #{value} ) countTable						
 	 </select>
 	
 </mapper>

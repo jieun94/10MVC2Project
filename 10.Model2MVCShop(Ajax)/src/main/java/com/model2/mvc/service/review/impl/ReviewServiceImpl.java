@@ -35,11 +35,27 @@ public class ReviewServiceImpl implements ReviewService{
 		reviewDao.insertReview(review);
 	}
 	
-	public Map<String , Object > getReviewList(int prodNo) throws Exception {
-		List<Review> list= reviewDao.getReviewList(prodNo);
+	public Map<String , Object > getReviewList(int prodNo, Search search) throws Exception {
+		
+		int totalCount = reviewDao.getTotalCount(prodNo);
+		List<Review> list= reviewDao.getReviewList(prodNo, search);
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list );
+		map.put("search", search);
+		map.put("totalCount", new Integer(totalCount));
 		return map;
 	}
+
+//	public Map<String , Object > getReviewList(int prodNo) throws Exception {
+//		
+//		int totalCount = reviewDao.getTotalCount(prodNo);
+//		List<Review> list= reviewDao.getReviewList(prodNo);
+//		
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		map.put("list", list );
+//		map.put("totalCount", new Integer(totalCount));
+//		return map;
+//	}
 
 }

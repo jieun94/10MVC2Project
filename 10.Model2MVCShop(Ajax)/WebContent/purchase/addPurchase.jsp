@@ -37,6 +37,22 @@
 	    </style>
 	    
 	    <!--  ///////////////////////// JavaScript ////////////////////////// -->
+		<script type="text/javascript">
+			//============= "구매내역"  Event 연결 =============
+			$(function() {
+				$( "button.btn.btn-default:contains('구매내역')" ).on("click" , function() {
+					self.location = "/purchase/listPurchase"
+				});
+			});	
+			
+			//============= "상품목록"  Event 연결 =============
+			$(function() {
+				$( "button.btn.btn-default:contains('상품목록')" ).on("click" , function() {
+					self.location = "/product/listProduct"
+				});
+			});	
+		</script>
+	    
 	</head>
 
 	<body>
@@ -57,61 +73,81 @@
 		  		<div class="col-xs-4 col-md-2"><strong>상품명</strong></div>
 				<div class="col-xs-8 col-md-4">${purchase.purchaseProd.prodName}</div>
 			</div>
+			
+			<hr/>
+			
+			<div class="row">
+		  		<div class="col-xs-4 col-md-2"><strong>구매자아이디</strong></div>
+				<div class="col-xs-8 col-md-4">${purchase.buyer.userId}</div>
+			</div>
+			
+			<hr/>
+
+			<div class="row">
+		  		<div class="col-xs-4 col-md-2"><strong>구매방법</strong></div>
+				<div class="col-xs-8 col-md-4">
+					<c:if test="${purchase.paymentOption == 1}">
+						현금구매
+					</c:if>
+					<c:if test="${purchase.paymentOption == 2}">
+						신용구매
+					</c:if>
+				</div>
+			</div>
+			
+			<hr/>
+
+			<div class="row">
+		  		<div class="col-xs-4 col-md-2"><strong>구매수량</strong></div>
+				<div class="col-xs-8 col-md-4">${purchase.tranNum}</div>
+			</div>
+			
+			<hr/>
+
+			<div class="row">
+		  		<div class="col-xs-4 col-md-2"><strong>구매자이름</strong></div>
+				<div class="col-xs-8 col-md-4">${purchase.receiverName}</div>
+			</div>
+			
+			<hr/>
+
+			<div class="row">
+		  		<div class="col-xs-4 col-md-2"><strong>구매자연락처</strong></div>
+				<div class="col-xs-8 col-md-4">${purchase.receiverPhone}</div>
+			</div>
+			
+			<hr/>
+
+			<div class="row">
+		  		<div class="col-xs-4 col-md-2"><strong>구매자주소</strong></div>
+				<div class="col-xs-8 col-md-4">${purchase.divyAddr}</div>
+			</div>
+			
+			<hr/>
+
+			<div class="row">
+		  		<div class="col-xs-4 col-md-2"><strong>구매요청사항</strong></div>
+				<div class="col-xs-8 col-md-4">${purchase.divyRequest}</div>
+			</div>
+			
+			<hr/>
+
+			<div class="row">
+		  		<div class="col-xs-4 col-md-2"><strong>배송희망일자</strong></div>
+				<div class="col-xs-8 col-md-4">${purchase.divyDate}</div>
+			</div>
+			
+			<hr/>
+
+			<div class="row">
+		  		<div class="col-md-12 text-right ">
+		  			<button type="button" class="btn btn-default">구매내역</button>
+		  			<button type="button" class="btn btn-default">상품목록</button>
+		  		</div>
+			</div>
 		
+			<br/>
+			
 		</div>
-	
-	<form name="updatePurchase" action="/purchase/updatePurchase?tranNo=${purchase.tranNo}" method="post">
-	
-	다음과 같이 구매가 되었습니다.
-	
-	<table border=1>
-		<tr>
-			<td>물품번호</td>
-			<td>${purchase.purchaseProd.prodNo}</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>구매자아이디</td>
-			<td>${purchase.buyer.userId}</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>구매방법</td>
-			<td>${purchase.paymentOption}</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>구매수량</td>
-			<td>${purchase.tranNum}</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>구매자이름</td>
-			<td>${purchase.receiverName}</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>구매자연락처</td>
-			<td>${purchase.receiverPhone}</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>구매자주소</td>
-			<td>${purchase.divyAddr}</td>
-			<td></td>
-		</tr>
-			<tr>
-			<td>구매요청사항</td>
-			<td>${purchase.divyRequest}</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>배송희망일자</td>
-			<td>${purchase.divyDate}</td>
-			<td></td>
-		</tr>
-	</table>
-	</form>
-	
 	</body>
 </html>

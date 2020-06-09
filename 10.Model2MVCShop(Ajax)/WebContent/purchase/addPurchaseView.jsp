@@ -161,23 +161,23 @@
 				</div>
 
 				<div class="form-group">
-				    <label for="receiverAddr" class="col-sm-3 col-md-2 control-label text-left">구매자주소</label>
+				    <label for="divyAddr" class="col-sm-3 col-md-2 control-label text-left">구매자주소</label>
 				    <div class="col-sm-4 col-md-10">
-				      <input type="text" class="form-control" id="receiverAddr" name="receiverAddr" value="${user.addr}">
+				      <input type="text" class="form-control" id="divyAddr" name="divyAddr" value="${user.addr}">
 				    </div>
 				</div>
 
 				<div class="form-group">
-				    <label for="receiverRequest" class="col-sm-3 col-md-2 control-label text-left">구매요청사항</label>
+				    <label for="divyRequest" class="col-sm-3 col-md-2 control-label text-left">구매요청사항</label>
 				    <div class="col-sm-4 col-md-10">
-				      <input type="text" class="form-control" id="receiverRequest" name="receiverRequest">
+				      <input type="text" class="form-control" id="divyRequest" name="divyRequest">
 				    </div>
 				</div>
 
 				<div class="form-group">
-				    <label for="receiverDate" class="col-sm-3 col-md-2 control-label text-left">배송희망일자</label>
+				    <label for="divyDate" class="col-sm-3 col-md-2 control-label text-left">배송희망일자</label>
 				    <div class="col-sm-4 col-md-10">
-				      <input type="date" class="form-control" id="receiverDate" name="receiverDate">
+				      <input type="date" class="form-control" id="divyDate" name="divyDate">
 				    </div>
 				</div>
 

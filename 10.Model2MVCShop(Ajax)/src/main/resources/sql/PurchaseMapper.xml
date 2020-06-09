@@ -60,9 +60,10 @@
 	   		payment_option		= #{paymentOption} ,
 			receiver_name		= #{receiverName},
 			receiver_phone 		= #{receiverPhone:VARCHAR} ,
-			demailaddr			= #{divyAddr:VARCHAR},
+			demailaddr			= #{divyAddr},
 			dlvy_request		= #{divyRequest:VARCHAR},
-			dlvy_date			= #{divyDate:VARCHAR}
+			dlvy_date			= #{divyDate:VARCHAR},
+			tran_num			= #{tranNum}
 	   	</set>
 	   	WHERE tran_no = #{tranNo}
 	 </update>

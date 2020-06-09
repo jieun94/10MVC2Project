@@ -82,18 +82,29 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value="getProduct", method=RequestMethod.GET )
-	public String getProduct(@RequestParam("prodNo") int prodNo, @RequestParam("menu") String menu, Model model) throws Exception {
+	public String getProduct(@RequestParam("prodNo") int prodNo, @RequestParam("menu") String menu, Model model, Search search) throws Exception {
 
 		System.out.println("/product/getProduct : GET");
 		
 		Product prod = prodService.getProduct(prodNo);
 		
 		// listReview 수행
-		Map<String , Object> map=reviewService.getReviewList(prodNo);
+		
+		if(search.getCurrentPage() ==0 ){
+			search.setCurrentPage(1);
+		}
+		search.setPageSize(pageSize);
+		
+		Map<String , Object> map=reviewService.getReviewList(prodNo, search);
+		Page resultPage = new Page( search.getCurrentPage(), ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
+		System.out.println(resultPage);
+
 		
 		// Model 과 View 연결
 		if (map!=null) {
 			model.addAttribute("list", map.get("list"));
+			model.addAttribute("search", search);
+			model.addAttribute("resultPage", resultPage);
 		}
 		model.addAttribute("prod", prod);
 		

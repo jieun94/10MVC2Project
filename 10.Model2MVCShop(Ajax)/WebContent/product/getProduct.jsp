@@ -115,7 +115,9 @@
 				<div class="row">
 			  		<div class="col-md-12 text-right ">
 			  			<c:if test="${user.userId !=null }">
-			  				<button type="button" class="btn btn-primary">구매</button>
+			  				<c:if test="${prod.prodNum != 0}">
+			  					<button type="button" class="btn btn-primary">구매</button>
+			  				</c:if>
 			  			</c:if>
 			  			<button type="button" class="btn btn-default">이전</button>
 			  		</div>

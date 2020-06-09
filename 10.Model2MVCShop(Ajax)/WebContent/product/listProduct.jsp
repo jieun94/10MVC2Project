@@ -171,13 +171,13 @@
 										$("h6").remove();
 										$( "#"+prodNo+"" ).html(displayValue);
 									}
-							});
-							////////////////////////////////////////////////////////////////////////////////////////////
+						});
+						////////////////////////////////////////////////////////////////////////////////////////////
 						
-					});
+				});
 				
 				//============= userId 에 회원정보보기  Event  처리(Click) =============	
-				 $(function() {
+				$(function() {
 				
 					//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
 					$( "td:nth-child(2)" ).on("click" , function() {
@@ -188,11 +188,13 @@
 					//==> userId LINK Event End User 에게 보일수 있도록 
 					$( "td:nth-child(2)" ).css("color" , "red");
 					
-				});	
+					});	
 				
-				//짝수열 회색
-				$(".ct_list_pop:nth-child(4n+2)" ).css("background-color" , "whitesmoke");
-			});	
+					//짝수열 회색
+					$(".ct_list_pop:nth-child(4n+2)" ).css("background-color" , "whitesmoke");
+				});
+				
+				
 			
 			</script>
 	</head>

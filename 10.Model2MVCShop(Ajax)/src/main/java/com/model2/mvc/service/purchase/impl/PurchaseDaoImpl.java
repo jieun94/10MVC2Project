@@ -41,10 +41,6 @@ public class PurchaseDaoImpl implements PurchaseDao{
 		return sqlSession.selectOne("PurchaseMapper.getPurchase",prodNo);
 	}
 	
-	//public Map<String, Object> getPurchaseList(Search search, String buyerId) throws Exception { 
-	//	return sqlSession.selectMap("PurchaseMapper.getPcList", buyerId); 
-	//}
-	
 	public List<Purchase> getPurchaseList(Search search, String buyerId) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("search", search);
