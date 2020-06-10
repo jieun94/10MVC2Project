@@ -172,7 +172,7 @@ public class PurchaseController {
 	}
 	
 	@RequestMapping(value="updateTranCode", method = RequestMethod.GET)
-	public ModelAndView updateTranCode( Purchase purchase ) throws Exception {
+	public ModelAndView updateTranCode( @RequestParam("tranCode") String tranCode , Purchase purchase ) throws Exception {
 		
 		System.out.println("/purchase/updateTranCode : GET");
 		
@@ -181,7 +181,7 @@ public class PurchaseController {
 		purchase = purchaseService.getPurchase(purchase.getTranNo());
 		
 		ModelAndView modelAndView = new ModelAndView();
-		if (purchase.getTranCode().contentEquals("3")) {
+		if (tranCode.contentEquals("3")) {
 			modelAndView.setViewName("redirect:/purchase/listPurchase");
 		} else {
 			modelAndView.setViewName("redirect:/purchase/listSale?prodNo="+purchase.getPurchaseProd().getProdNo());

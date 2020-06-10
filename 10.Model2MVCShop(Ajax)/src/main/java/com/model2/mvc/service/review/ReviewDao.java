@@ -15,5 +15,7 @@ public interface ReviewDao {
 	
 	public int getTotalCount(int prodNo) throws Exception;
 	
+	public Review getReview(int reviewNo) throws Exception;
+	
 
 }

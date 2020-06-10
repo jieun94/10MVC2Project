@@ -84,7 +84,7 @@
 								FROM product p, transaction t 
 								WHERE p.prod_no = t.prod_no(+) 
 								AND t.buyer_id = #{buyerId}
-								ORDER BY p.prod_no DESC ) inner_table 	
+								ORDER BY t.order_data DESC ) inner_table 	
 					WHERE ROWNUM &lt;= #{search.endRowNum} )
 		WHERE row_seq BETWEEN #{search.startRowNum} AND #{search.endRowNum}
 	 </select>

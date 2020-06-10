@@ -101,7 +101,7 @@ public class ReviewController {
 //		System.out.println(resultPage);
 		
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("forward:/review/listReview.jsp");
+		modelAndView.setViewName("forward:/product/getProduct.jsp");
 //		modelAndView.addObject("search", search);
 		modelAndView.addObject("list", map.get("list"));
 //		modelAndView.addObject("resultPage", resultPage);

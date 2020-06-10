@@ -45,5 +45,9 @@ public class ReviewDaoImpl implements ReviewDao {
 	public int getTotalCount(int prodNo) throws Exception {
 		return sqlSession.selectOne("ReviewMapper.getTotalCount", prodNo);
 	}
+	
+	public Review getReview(int reviewNo) throws Exception {
+		return sqlSession.selectOne("ReviewMapper.getReview", reviewNo);
+	}
 
 }

@@ -57,5 +57,10 @@ public class ReviewServiceImpl implements ReviewService{
 //		map.put("totalCount", new Integer(totalCount));
 //		return map;
 //	}
+	
+	public Review getReview(int reviewNo) throws Exception {
+		
+		return reviewDao.getReview(reviewNo);
+	}
 
 }

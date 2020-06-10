@@ -69,7 +69,7 @@
 					
 					if (tranCode==2) {
 						
-						$.ajax( 
+						/* $.ajax( 
 								{
 									url : "/purchase/json/updateTranCode/"+tranNo+"/3" ,
 									method : "GET" ,
@@ -92,7 +92,9 @@
 										//$("#textHidden").text(displayValue);
 										$( "#"+tranNo+"" ).html(displayValue);
 								}
-						});
+						}); */
+						///purchase/updateTranCode?tranNo=${purchase.tranNo}&tranCode=3
+						self.location ="/purchase/updateTranCode?tranNo="+tranNo+"&tranCode=3";
 						////////////////////////////////////////////////////////////////////////////////////////////
 					} else if (tranCode==3) {
 						

@@ -12,5 +12,7 @@ public interface ReviewService {
 //	public Map<String , Object > getReviewList(int prodNo) throws Exception;
 	
 	public Map<String , Object > getReviewList(int prodNo, Search search) throws Exception;
+	
+	public Review getReview(int reviewNo) throws Exception;
 
 }

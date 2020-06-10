@@ -31,9 +31,9 @@
 		
 		<!--  ///////////////////////// CSS ////////////////////////// -->
 		<style>
-		  body {
-	            padding-top : 50px;
-	        }
+			body {
+				padding-top : 50px;
+			}
 	    </style>
 	    
 	    <!--  ///////////////////////// JavaScript ////////////////////////// -->
@@ -53,6 +53,7 @@
 					self.location = "javascript:history.go(-1)"
 				});
 			});	
+			
 		</script>
 		</head>
 
@@ -107,7 +108,12 @@
 				
 				<div class="row">
 			  		<div class="col-xs-4 col-md-2"><strong>상품이미지</strong></div>
-					<div class="col-xs-8 col-md-4"><img src="/images/uploadFiles/${prod.fileName}"/></div>
+			  		<c:if test="${prod.fileName != null}">
+						<div class="col-xs-8 col-md-4"><img src="/images/uploadFiles/${prod.fileName}"/></div>
+					</c:if>
+					<c:if test="${prod.fileName == null}">
+						<div class="col-xs-8 col-md-4">이미지 없음</div>
+					</c:if>
 				</div>
 				
 				<hr/>
