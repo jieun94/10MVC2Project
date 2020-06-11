@@ -77,7 +77,7 @@
 			//============= "이전"  Event 연결 =============
 			$(function() {
 				//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-				$( "button.btn.btn-primary:contains('이전')" ).on("click" , function() {
+				$( ".btn-default" ).on("click" , function() {
 					self.location = "javascript:history.go(-1)"
 				});
 			});	
@@ -152,7 +152,7 @@
 			  	<div class="form-group">
 			    	<div class="col-sm-offset-4  col-sm-4 text-right">
 			      		<button type="button" class="btn btn-primary"  >수정</button>
-				  		<button type="button" class="btn btn-primary"  >이전</button>
+				  		<button type="button" class="btn btn-default"  >이전</button>
 			    	</div>
 			  	</div>
 			</form>

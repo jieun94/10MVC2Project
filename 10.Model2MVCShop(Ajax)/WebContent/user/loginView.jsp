@@ -17,6 +17,8 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+	<!-- (2) LoginWithNaverId Javscript SDK -->
+	<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"></script>
 	
 	<!--  ///////////////////////// CSS ////////////////////////// -->
 	<style>
@@ -59,11 +61,11 @@
 		//============= 회원원가입화면이동 =============
 		$( function() {
 			//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-			$("a[href='#' ]").on("click" , function() {
+			$(".btn-default").on("click" , function() {
 				self.location = "/user/addUser"
 			});
 		});
-		
+
 	</script>		
 	
 </head>
@@ -113,11 +115,12 @@
 					  <div class="form-group">
 					    <div class="col-sm-offset-4 col-sm-6 text-center">
 					      <button type="button" class="btn btn-primary"  >로 &nbsp;그 &nbsp;인</button>
-					      <a class="btn btn-primary btn" href="#" role="button">회 &nbsp;원 &nbsp;가 &nbsp;입</a>
+					      <a class="btn btn-default btn" href="#" role="button">회 &nbsp;원 &nbsp;가 &nbsp;입</a>
 					    </div>
 					  </div>
 			
 					</form>
+					
 			   	 </div>
 			
 			</div>
@@ -127,7 +130,45 @@
   	 	
  	</div>
  	<!--  화면구성 div end /////////////////////////////////////-->
+	<script>
+		
+		var naverLogin = new naver.LoginWithNaverId(
+			{
+				clientId: "iGMKZvHQPumWS4ehSvi7",
+				callbackUrl: "http://192.168.0.61:8080/main.jsp",
+				isPopup: true,
+				loginButton: {color: "green", type: 3, height: 50}
+			}
+		);
+		/* (4) 네아로 로그인 정보를 초기화하기 위하여 init을 호출 */
+		naverLogin.init();
+		
+		/* (4-1) 임의의 링크를 설정해줄 필요가 있는 경우 */
+		//$("#gnbLogin").attr("href", naverLogin.generateAuthorizeUrl());
 
+		/* (5) 현재 로그인 상태를 확인 */
+		window.addEventListener('load', function () {
+			naverLogin.getLoginStatus(function (status) {
+				if (status) {
+					/* (6) 로그인 상태가 "true" 인 경우 로그인 버튼을 없애고 사용자 정보를 출력합니다. */
+					setLoginStatus();
+				}
+			});
+		});
+
+		/* (6) 로그인 상태가 "true" 인 경우 로그인 버튼을 없애고 사용자 정보를 출력합니다. */
+		function setLoginStatus() {
+			var uniqId = naverLogin.user.getId();
+			$("#naverIdLogin_loginButton").html('<br><br><p>' + uniqId + '님 반갑습니다.</p>');
+			$("#gnbLogin").html("Logout");
+			$("#gnbLogin").attr("href", "#");
+			/* (7) 로그아웃 버튼을 설정하고 동작을 정의합니다. */
+			$("#gnbLogin").click(function () {
+				naverLogin.logout();
+				location.reload();
+			});
+		}
+	</script>
 </body>
 
 </html>

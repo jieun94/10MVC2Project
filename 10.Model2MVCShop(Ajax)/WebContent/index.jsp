@@ -162,7 +162,7 @@
 			  		
 			  		<div class="text-center">
 			  			<a class="btn btn-info btn-lg" href="#" role="button">회원가입</a>
-			  			<a class="btn btn-info btn-lg" href="#" role="button">로 그 인</a>
+			  			<span id=""><a id="gnbLogin" class="btn btn-info btn-lg" href="#" role="button">로 그 인</a></span>
 			  		</div>
 			  	
 			  	</div>
@@ -174,6 +174,7 @@
 		
 	</div>
 	<!--  화면구성 div end /////////////////////////////////////-->
+	
 
 </body>
 

@@ -41,12 +41,30 @@
 		//============= "취소"  Event 처리 및  연결 =============
 		$(function() {
 			//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-			$("a[href='#' ]").on("click" , function() {
-				$("form")[0].reset();
+			$(".btn-default").on("click" , function() {
+				self.location = "javascript:history.go(-1)"
 			});
 		});	
-	
 		
+		//============ 비밀번호 확인 ===========================
+		$(function() { 
+			$("#alert-success").hide(); 
+			$("#alert-danger").hide(); 
+			$("input").keyup( function() { 
+				var pwd1=$("#password").val(); 
+				var pwd2=$("#password2").val(); 
+				if(pwd1 != "" || pwd2 != ""){ 
+					if(pwd1 == pwd2){ 
+						$("#alert-success").show(); 
+						$("#alert-danger").hide(); 
+					} else { 
+						$("#alert-success").hide(); 
+						$("#alert-danger").show(); 
+					} 
+				} 
+			}); 
+		});
+
 		function fncAddUser() {
 			
 			var id=$("input[name='userId']").val();
@@ -201,10 +219,16 @@
 		    </div>
 		  </div>
 		  
+		  
+		  <div class="alert alert-success col-sm-offset-4 col-sm-4" id="alert-success">비밀번호가 일치합니다.</div>
+		  <div class="alert alert-danger col-sm-offset-4 col-sm-4" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
+		  
+		  <div class="col-sm-12"></div>
+		  
 		  <div class="form-group">
 		    <label for="userName" class="col-sm-offset-1 col-sm-3 control-label">이름</label>
 		    <div class="col-sm-4">
-		      <input type="password" class="form-control" id="userName" name="userName" placeholder="회원이름">
+		      <input type="text" class="form-control" id="userName" name="userName" placeholder="회원이름">
 		    </div>
 		  </div>
 		  
@@ -255,7 +279,7 @@
 		  <div class="form-group">
 		    <div class="col-sm-offset-4  col-sm-4 text-center">
 		      <button type="button" class="btn btn-primary"  >가 &nbsp;입</button>
-			  <a class="btn btn-primary btn" href="#" role="button">취&nbsp;소</a>
+			  <button type="button" class="btn btn-default">취&nbsp;소</button>
 		    </div>
 		  </div>
 		</form>

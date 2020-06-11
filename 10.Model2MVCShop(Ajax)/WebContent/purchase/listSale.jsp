@@ -120,6 +120,7 @@
  --%>			  
 				<!-- PageNavigation 선택 페이지 값을 보내는 부분 -->
 				<input type="hidden" id="currentPage" name="currentPage" value=""/>
+				<input type="hidden" id="prodNo" name="prodNo" value="${param.prodNo}"/>
 			  
 			</form>
     	</div>
@@ -163,6 +164,9 @@
 						</c:when>
 						<c:when test="${purchase.tranCode=='3  '}">
 							배송완료
+						</c:when>
+						<c:when test="${purchase.tranCode=='4  '}">
+							리뷰작성완료
 						</c:when>
 						<c:otherwise>
 							판매중
