@@ -112,10 +112,10 @@ public class UserRestController {
 		return map;
 	}
 	
-	@RequestMapping( value="json/checkDuplication/{userId}", method=RequestMethod.POST )
-	public Map checkDuplication( @PathVariable("userId") String userId , @RequestBody User user ) throws Exception{
+	@RequestMapping( value="json/checkDuplication/{userId}", method=RequestMethod.GET )
+	public Map checkDuplication( @PathVariable("userId") String userId) throws Exception{
 		
-		System.out.println("/json/checkDuplication : POST");
+		System.out.println("/json/checkDuplication : GET");
 		
 		boolean result=userService.checkDuplication(userId);
 		

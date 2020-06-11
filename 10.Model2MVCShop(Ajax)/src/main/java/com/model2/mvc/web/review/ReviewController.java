@@ -90,21 +90,21 @@ public class ReviewController {
 		
 		System.out.println("/review/listReview : GET");
 		
-//		if(search.getCurrentPage() ==0 ){
-//			search.setCurrentPage(1);
-//		}
-//		search.setPageSize(pageSize);
+		if(search.getCurrentPage() ==0 ){
+			search.setCurrentPage(1);
+		}
+		search.setPageSize(pageSize);
 		
 		// Business logic ผ๖วเ
 		Map<String , Object> map=reviewService.getReviewList(prodNo, search);
-//		Page resultPage = new Page( search.getCurrentPage(), ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
-//		System.out.println(resultPage);
+		Page resultPage = new Page( search.getCurrentPage(), ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
+		System.out.println(resultPage);
 		
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("forward:/product/getProduct.jsp");
-//		modelAndView.addObject("search", search);
+		modelAndView.setViewName("forward:/product/getProduct");
+		modelAndView.addObject("search", search);
 		modelAndView.addObject("list", map.get("list"));
-//		modelAndView.addObject("resultPage", resultPage);
+		modelAndView.addObject("resultPage", resultPage);
 		
 		return modelAndView;
 	}

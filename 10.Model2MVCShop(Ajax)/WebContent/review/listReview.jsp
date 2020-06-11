@@ -6,9 +6,26 @@
 			function fncGetUserList(currentPage) {
 				
 				$("#currentPage").val(currentPage)
-				$("form").attr("method" , "GET").attr("action" , "/review/listReview").submit();
-				
-				
+				/* 
+				$(function(){
+				    //$("#btn_search").click(function(){
+				        //alert("검색 버튼 클릭!");
+				        var params = $("form").serialize();
+				        
+				         $.ajax({
+				            url:'/review/json/listReview',
+				            type:'POST',
+				            dataType: "json",
+				            data:params,
+				            success:function(data){
+				                // success
+				            },
+				            error:function(){
+				                alert("ajax통신 실패!!!");
+				            }
+				        }); 
+				    }); */
+				$("form").attr("method" , "GET").attr("action" , "/product/getProduct").submit();
 			}
 			
 			function fncReviewList(reviewNo) {
@@ -48,8 +65,9 @@
 		    <div class="col-md-6 text-right">
 			    <form class="form-inline" name="detailForm">
 			    	<input type="hidden" id="prodNo" name="prodNo" value="${param.prodNo}"/>
-				  <!-- PageNavigation 선택 페이지 값을 보내는 부분 -->
-				  <input type="hidden" id="currentPage" name="currentPage" value=""/>
+				  	<!-- PageNavigation 선택 페이지 값을 보내는 부분 -->
+				  	<input type="hidden" id="currentPage" name="currentPage" value=""/>
+				  	<input type="hidden" id="menu" name="menu" value="search"/>
 				</form>
 	    	</div>
 			<!-- table 위쪽 검색 end /////////////////////////////////////-->

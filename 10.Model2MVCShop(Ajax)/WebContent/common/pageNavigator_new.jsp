@@ -39,7 +39,7 @@
 				</c:if>
 			</c:forEach>
 		    
-		     <!--  우측 nav==>> -->
+ 		     <!--  우측 nav==>> -->
 		     <c:if test="${ resultPage.endUnitPage >= resultPage.maxPage }">
 		  		<li class="disabled">
 			</c:if>
@@ -56,7 +56,7 @@
 </div>
  
 
-
+<%--
 <div class="container">
 		<nav>
 		  <ul class="pager">
@@ -74,5 +74,5 @@
 		    <!-- <li class="previous"><a href="#"><span aria-hidden="true">&larr;</span> Older</a></li>  -->
 		    <li class="next"><a href="#">Newer <span aria-hidden="true">&rarr;</span></a></li>
 		  </ul>
-		</nav>
-</div>
+		</nav> 
+</div>--%>

@@ -36,7 +36,7 @@
 	            padding-top : 50px;
 	        }
 	        
-	        .padding-top {
+	        .padding-bottom {
 	        	padding-bottom: 50px;
 	        }
 	        
@@ -91,7 +91,6 @@
 									
 									var displayValue = "<h6>"
 											+"상품명 : "+JSONData.prodName+"<br/>"
-											+"상품 이미지 : <img src='/images/uploadFiles/"+JSONData.fileName+"'><br/>"
 											+"상품 상세정보 : "+JSONData.prodDetail+"<br/>"
 											+"제조일자 : "+JSONData.manuDate+"<br/>"
 											+"가격 : "+JSONData.price+"<br/>"
@@ -154,7 +153,6 @@
 										
 										var displayValue = "<h6>"
 												+"상품명 : "+JSONData.prodName+"<br/>"
-												+"상품 이미지 : <img src='/images/uploadFiles/"+JSONData.fileName+"'><br/>"
 												+"상품 상세정보 : "+JSONData.prodDetail+"<br/>"
 												+"제조일자 : "+JSONData.manuDate+"<br/>"
 												+"가격 : "+JSONData.price+"<br/>"
@@ -190,7 +188,7 @@
 					//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
 					$( "td:nth-child(2)" ).on("click" , function() {
 						var prodNo = $(this).text().trim().substring(0,5);
-						self.location ="/product/getProduct?prodNo="+prodNo+"&menu=${param.menu}";
+						self.location ="/product/getProduct?prodNo="+prodNo+"&menu=${param.menu}&currentPage=1";
 					});
 								
 					//==> userId LINK Event End User 에게 보일수 있도록 
@@ -229,7 +227,7 @@
 			  <li role="presentation"><a href="#tab2" data-toggle="tab">블록형</a></li>
 			</ul>
 			
-			<div class="padding-top"></div>	    
+			<div class="padding-bottom"></div>	    
 		    <!-- table 위쪽 검색 Start /////////////////////////////////////-->
 		    <div class="row">
 		    
@@ -389,7 +387,7 @@
 						      	<p class="hidden">${prod.prodNo}</p>
 						        <h3>${prod.prodName }</h3>
 						        <p>${prod.prodDetail}</p>
-						        <p><a href="/purchase/addPurchase?prod_no=${prod.prodNo}" class="btn btn-primary" role="button">구매</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+						        <p><a href="/purchase/addPurchase?prod_no=${prod.prodNo}" class="btn btn-primary" role="button">구매</a></p>
 						      </div>
 						    </div>
 						  </div>

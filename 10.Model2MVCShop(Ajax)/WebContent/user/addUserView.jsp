@@ -46,10 +46,13 @@
 			});
 		});	
 		
-		//============ 비밀번호 확인 ===========================
+		//============ 아이디, 비밀번호 확인 ===========================
 		$(function() { 
+			$("#id-success").hide(); 
+			$("#id-danger").hide(); 
 			$("#alert-success").hide(); 
 			$("#alert-danger").hide(); 
+			//===================== 비밀번호 확인=================
 			$("input").keyup( function() { 
 				var pwd1=$("#password").val(); 
 				var pwd2=$("#password2").val(); 
@@ -62,7 +65,38 @@
 						$("#alert-danger").show(); 
 					} 
 				} 
-			}); 
+			});
+			//=============비밀번호 확인============================
+			// 아이디 유효성 검사(1 = 중복 / 0 != 중복)
+			$("#userId").keyup(function() {
+				// id = "id_reg" / name = "userId"
+				var user_id = $('#userId').val();
+				
+				if (user_id == "") {
+					$("#id-success").hide(); 
+					$("#id-danger").hide(); 
+					
+				} else {
+				
+					$.ajax({
+						url : 'json/checkDuplication/'+ user_id,
+						type : 'get',
+						success : function(data) {
+							console.log("true = 중복o / false = 중복x : "+ data.result);							
+							
+							if (data.result) {
+								// DB에 ID 없음
+									$("#id-success").show(); 
+									$("#id-danger").hide(); 
+							}  else  {
+									$("#id-success").hide(); 
+									$("#id-danger").show(); 
+							}
+						}
+					}); 
+				}
+			});
+			//================== 아이디 유효성 검사 끝 =========================
 		});
 
 		function fncAddUser() {
@@ -169,6 +203,8 @@
 											"scrollbars=no,scrolling=no,menubar=no,resizable=no");
 			});
 		});	
+		
+		
 
 	</script>		
     
@@ -195,15 +231,19 @@
 		  <div class="form-group">
 		    <label for="userId" class="col-sm-offset-1 col-sm-3 control-label">아 이 디</label>
 		    <div class="col-sm-4">
-		      <input type="text" class="form-control" id="userId" name="userId" placeholder="중복확인하세요"  readonly>
+		      <input type="text" class="form-control" id="userId" name="userId" placeholder="중복확인하세요">
 		       <span id="helpBlock" class="help-block">
-		      	<strong class="text-danger">입력전 중복확인 부터..</strong>
 		      </span>
 		    </div>
 		    <div class="col-sm-3">
 		      <button type="button" class="btn btn-info">중복확인</button>
 		    </div>
 		  </div>
+		  
+		  <div class="alert alert-success col-sm-offset-4 col-sm-4" id="id-success">사용가능</div>
+		  <div class="alert alert-danger col-sm-offset-4 col-sm-4" id="id-danger">중복</div>
+		  
+		  <div class="col-sm-12"></div>
 		  
 		  <div class="form-group">
 		    <label for="password" class="col-sm-offset-1 col-sm-3 control-label">비밀번호</label>

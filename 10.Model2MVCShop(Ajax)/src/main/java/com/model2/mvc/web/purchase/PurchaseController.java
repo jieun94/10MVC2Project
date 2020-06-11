@@ -69,12 +69,12 @@ public class PurchaseController {
 		
 		System.out.println("/purchase/addPurchase : POST");
 		
-		User user = (User)session.getAttribute("user");
-		
-		purchase.setPurchaseProd(product);
-		product = prodService.getProduct(purchase.getPurchaseProd().getProdNo());
-		purchase.setPurchaseProd(product);
-		purchase.setBuyer(user);
+//		User user = (User)session.getAttribute("user");
+//		
+//		purchase.setPurchaseProd(product);
+//		product = prodService.getProduct(purchase.getPurchaseProd().getProdNo());
+//		purchase.setPurchaseProd(product);
+//		purchase.setBuyer(user);
 		
 		purchaseService.addPurchase(purchase);
 		//purchaseService.updateProdNum(purchase);

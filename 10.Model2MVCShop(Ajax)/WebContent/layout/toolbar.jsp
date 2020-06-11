@@ -3,7 +3,12 @@
 
 <!--  ///////////////////////// JSTL  ////////////////////////// -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<style>
+	.dropdown:hover .dropdown-menu {
+    	display: block;
+    	margin-top: 0;
+ 	}
+</style>
 
 <!-- ToolBar Start /////////////////////////////////////-->
 <div class="navbar  navbar-inverse navbar-fixed-top">

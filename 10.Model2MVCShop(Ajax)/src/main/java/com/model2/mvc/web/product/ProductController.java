@@ -32,8 +32,6 @@ public class ProductController {
 	private ProductService prodService;
 	@Autowired
 	private ReviewService reviewService;
-//	@Autowired
-//	private String uploadPath;
 	
 	//Constructor
 	public ProductController(){
@@ -45,6 +43,9 @@ public class ProductController {
 	
 	@Value("#{commonProperties['pageSize']}")
 	int pageSize;
+	
+	@Value("#{commonProperties['path']}")
+	String path;
 	
 	@RequestMapping(value="addProduct", method = RequestMethod.GET)
 	public String addProduct() throws Exception {
@@ -64,7 +65,7 @@ public class ProductController {
 		
 		if (cmf.getSize()!=0) {
 			
-			String path ="C:/Users/user/git/repository/10MVC2Project/10.Model2MVCShop(Ajax)/WebContent/images/uploadFiles"+cmf.getOriginalFilename();
+			path += cmf.getOriginalFilename();
 			//String path ="C:/Users/home/git/10MVC2Project/10.Model2MVCShop(Ajax)/WebContent/images/uploadFiles"+cmf.getOriginalFilename();
 			//String path = uploadPath+cmf.getOriginalFilename();
 			
@@ -82,7 +83,7 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value="getProduct", method=RequestMethod.GET )
-	public String getProduct(@RequestParam("prodNo") int prodNo, @RequestParam("menu") String menu, Model model, Search search) throws Exception {
+	public String getProduct(@RequestParam("prodNo") int prodNo, @RequestParam("menu") String menu, Model model, @RequestParam("currentPage")int currentPage ,Search search) throws Exception {
 
 		System.out.println("/product/getProduct : GET");
 		
@@ -92,6 +93,8 @@ public class ProductController {
 		
 		if(search.getCurrentPage() ==0 ){
 			search.setCurrentPage(1);
+		} else {
+			search.setCurrentPage(currentPage);
 		}
 		search.setPageSize(pageSize);
 		

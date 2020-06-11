@@ -57,6 +57,33 @@
 				self.location = "/product/listProduct?menu=search"
 			});
 		});
+		//============= modal 로그인 화면이동 =============
+		$('#myModal').on('shown.bs.modal', function () {
+		  $('#myInput').focus()
+		})
+		//============= modal 로그인 처리 =============
+		$( function() {
+			$(".btn-primary").on("click" , function() {
+				
+				var id=$("input:text").val();
+				var pw=$("input:password").val();
+				
+				if(id == null || id.length <1) {
+					alert('ID 를 입력하지 않으셨습니다.');
+					$("#userId").focus();
+					return;
+				}
+				
+				if(pw == null || pw.length <1) {
+					alert('패스워드를 입력하지 않으셨습니다.');
+					$("#password").focus();
+					return;
+				}
+				
+				$("form").attr("method","POST").attr("action","/user/login").attr("target","_parent").submit();
+			});
+		});
+
 		
 	</script>	
 	
@@ -109,25 +136,25 @@
          			</div>
          			<!--  회원관리 아이템 -->
 					<ul class="list-group">
-						 <li class="list-group-item">
+						 <li class="list-group-item disabled">
 						 	<a href="#">개인정보조회</a> <i class="glyphicon glyphicon-ban-circle"></i>
 						 </li>
-						 <li class="list-group-item">
+						 <li class="list-group-item disabled">
 						 	<a href="#">회원정보조회</a> <i class="glyphicon glyphicon-ban-circle"></i>
 						 </li>
 					</ul>
 		        </div>
                
                
-				<div class="panel panel-primary">
+				<div class="panel panel-primary disabled">
 					<div class="panel-heading">
 							<i class="glyphicon glyphicon-briefcase"></i> 판매상품관리
          			</div>
 					<ul class="list-group">
-						 <li class="list-group-item">
+						 <li class="list-group-item disabled">
 						 	<a href="#">판매상품등록</a> <i class="glyphicon glyphicon-ban-circle"></i>
 						 </li>
-						 <li class="list-group-item">
+						 <li class="list-group-item disabled">
 						 	<a href="#">판매상품관리</a> <i class="glyphicon glyphicon-ban-circle"></i>
 						 </li>
 					</ul>
@@ -140,10 +167,10 @@
 	    			</div>
 					<ul class="list-group">
 						 <li class="list-group-item"><a href="#">상품검색</a></li>
-						  <li class="list-group-item">
+						  <li class="list-group-item disabled">
 						  	<a href="#">구매이력조회</a> <i class="glyphicon glyphicon-ban-circle"></i>
 						  </li>
-						 <li class="list-group-item">
+						 <li class="list-group-item disabled">
 						 	<a href="#">최근본상품</a> <i class="glyphicon glyphicon-ban-circle"></i>
 						 </li>
 					</ul>
@@ -162,9 +189,9 @@
 			  		
 			  		<div class="text-center">
 			  			<a class="btn btn-info btn-lg" href="#" role="button">회원가입</a>
-			  			<span id=""><a id="gnbLogin" class="btn btn-info btn-lg" href="#" role="button">로 그 인</a></span>
+			  			<!-- <a class="btn btn-info btn-lg" href="#" role="button">로 그 인</a> -->
+			  			<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">로그인</button>
 			  		</div>
-			  	
 			  	</div>
 	        </div>
 	   	 	<!--  Main end /////////////////////////////////////-->   		
@@ -174,7 +201,41 @@
 		
 	</div>
 	<!--  화면구성 div end /////////////////////////////////////-->
-	
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">Model2 MVC Shop 로그인</h4>
+	      </div>
+	      <div class="modal-body">
+	      		<form class="form-horizontal">
+		  
+					  <div class="form-group">
+					    <label for="userId" class="col-sm-4 control-label">아 이 디</label>
+					    <div class="col-sm-6">
+					      <input type="text" class="form-control" name="userId" id="userId"  placeholder="아이디" >
+					    </div>
+					  </div>
+					  
+					  <div class="form-group">
+					    <label for="password" class="col-sm-4 control-label">패 스 워 드</label>
+					    <div class="col-sm-6">
+					      <input type="password" class="form-control" name="password" id="password" placeholder="패스워드" >
+					    </div>
+					  </div>
+			
+				</form>
+
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-primary">로그인</button>
+	        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 
 </body>
 
