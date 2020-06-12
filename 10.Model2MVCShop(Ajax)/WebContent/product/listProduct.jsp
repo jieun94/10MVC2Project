@@ -101,12 +101,13 @@
 									if (menu!="search") {
 										
 										displayValue+='<h6><a href="/product/getProduct?prodNo='
-												+prodNo
-												+'&menu=manage">수정</a></h6>';
+											+prodNo
+											+'&menu=manage&currentPage=1'
+											+'">수정</a></h6>';
 									} else if(menu=="search" && JSONData.prodNum!=0) {
 										displayValue+='<h6><a href="/product/getProduct?prodNo='
 												+prodNo
-												+'&menu=search'
+												+'&menu=search&currentPage=1'
 												+'">상세조회</a></h6>';
 									}
 									
@@ -163,13 +164,14 @@
 										if (menu!="search") {
 											
 											displayValue+='<h6><a href="/product/getProduct?prodNo='
-													+prodNo
-													+'&menu=manage">수정</a></h6>';
+												+prodNo
+												+'&menu=manage&currentPage=1'
+												+'">수정</a></h6>';
 										} else if(menu=="search" && JSONData.prodNum!=0) {
 											displayValue+='<h6><a href="/product/getProduct?prodNo='
-													+prodNo
-													+'&menu=search'
-													+'">상세조회</a></h6>';
+												+prodNo
+												+'&menu=search&currentPage=1'
+												+'">상세조회</a></h6>';
 										}
 										
 										//Debug...									
@@ -224,7 +226,7 @@
 			<!-- tab형 네비게이션 start///////////////////////////////////////////////////// -->    
 		    <ul class="nav nav-tabs">
 			  <li role="presentation" class="active"><a href="#tab1" data-toggle="tab">게시판형</a></li>
-			  <li role="presentation"><a href="#tab2" data-toggle="tab">블록형</a></li>
+			  <li role="presentation"><a href="#tab2" data-toggle="tab">썸네일형</a></li>
 			</ul>
 			
 			<div class="padding-bottom"></div>	    

@@ -192,7 +192,7 @@
 		 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 		 
-		//==>"ID중복확인" Event 처리 및 연결
+		/* //==>"ID중복확인" Event 처리 및 연결
 		 $(function() {
 			//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
 			 $("button.btn.btn-info").on("click" , function() {
@@ -202,7 +202,7 @@
 											"left=300,top=200,width=780,height=130,marginwidth=0,marginheight=0,"+
 											"scrollbars=no,scrolling=no,menubar=no,resizable=no");
 			});
-		});	
+		});	 */
 		
 		
 
@@ -235,9 +235,9 @@
 		       <span id="helpBlock" class="help-block">
 		      </span>
 		    </div>
-		    <div class="col-sm-3">
+		    <!-- <div class="col-sm-3">
 		      <button type="button" class="btn btn-info">중복확인</button>
-		    </div>
+		    </div> -->
 		  </div>
 		  
 		  <div class="alert alert-success col-sm-offset-4 col-sm-4" id="id-success">사용가능</div>
