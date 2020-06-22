@@ -28,6 +28,10 @@
 	  	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	 	<!-- jQuery UI toolTip 사용 JS-->
 	  	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	  	
+	  	<!-- i'm port API CDN -->
+		<script src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+	  	
 		
 		<!--  ///////////////////////// CSS ////////////////////////// -->
 		<style>
@@ -43,17 +47,48 @@
 	    
 	    <!--  ///////////////////////// JavaScript ////////////////////////// -->
 		<script type="text/javascript">
-
+		
 			function fncAddPurchase() {
 				//Form 유효성 검증
 				var maxNum =$("input[name='maxNum']").val();
 				var tranNum =$("input[name='tranNum']").val();
+				var price = ${prod.price} * tranNum;
 				//alert(tranNum+">"+maxNum);
+				//alert(price);
 				if(parseInt(tranNum) > parseInt(maxNum)){
 					alert("최대 수량을 초과하였습니다. 현재 재고는"+maxNum+"개 입니다.");
 					return;
 				} else {
-					$("form").attr("method" , "POST").attr("action" , "/purchase/addPurchase").submit();
+					//alert(price);
+					IMP.init('iamport');
+	
+					IMP.request_pay({
+					    pg : 'inicis', // version 1.1.0부터 지원.
+					    pay_method : 'card',
+					    merchant_uid : 'merchant_' + new Date().getTime(),
+					    name : '주문명:결제테스트',
+					    amount : price, //판매 가격
+					    buyer_email : 'iamport@siot.do',
+					    buyer_name : '최지은',
+					    buyer_tel : '010-1234-5678',
+					    buyer_addr : '서울특별시 강남구 삼성동',
+					    buyer_postcode : '123-456'
+					}, function(rsp) {
+					    if ( rsp.success ) {
+					        var msg = '결제가 완료되었습니다.';
+					        msg += '고유ID : ' + rsp.imp_uid;
+					        msg += '상점 거래ID : ' + rsp.merchant_uid;
+					        msg += '결제 금액 : ' + rsp.paid_amount;
+					        msg += '카드 승인번호 : ' + rsp.apply_num;
+					        
+					        $("form").attr("method" , "POST").attr("action" , "/purchase/addPurchase").submit();
+					    } else {
+					        var msg = '결제에 실패하였습니다.';
+					        msg += '에러내용 : ' + rsp.error_msg;
+					    }
+					    alert(msg);
+					});
+					
 				}
 				//document.addPurchase.submit();
 				
@@ -76,7 +111,6 @@
 					self.location = "javascript:history.go(-1)"
 				});
 			});	
-
 		
 		</script>
 	</head>
