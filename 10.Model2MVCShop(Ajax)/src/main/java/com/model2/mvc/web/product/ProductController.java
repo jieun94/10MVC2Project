@@ -1,7 +1,13 @@
 package com.model2.mvc.web.product;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.net.URL;
 import java.util.Map;
+
+import javax.imageio.ImageIO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -44,7 +50,7 @@ public class ProductController {
 	@Value("#{commonProperties['pageSize']}")
 	int pageSize;
 	
-	@Value("#{commonProperties['path']}")
+	@Value("#{commonProperties['path2']}")
 	String path;
 	
 	@RequestMapping(value="addProduct", method = RequestMethod.GET)
@@ -66,13 +72,22 @@ public class ProductController {
 		if (cmf.getSize()!=0) {
 			
 			path += cmf.getOriginalFilename();
-			//String path ="C:/Users/home/git/10MVC2Project/10.Model2MVCShop(Ajax)/WebContent/images/uploadFiles"+cmf.getOriginalFilename();
-			//String path = uploadPath+cmf.getOriginalFilename();
 			
 			prod.setFileName(cmf.getOriginalFilename());
 		    	
 	    	File f = new File(path);
 	    	cmf.transferTo(f);
+	    	
+	    	 BufferedImage image = ImageIO.read(new File(path)); 
+			 Graphics g = image.getGraphics(); 
+			 g.setColor(Color.black);
+			 g.setFont(g.getFont().deriveFont(30f)); 
+			 g.drawString("Hello World!", 570, 130); 
+			 g.setFont(g.getFont().deriveFont(20f)); 
+			 g.drawString("ÀúÀÚ¸í", 750, 170); 
+			 g.dispose(); 
+
+			 ImageIO.write(image, "png", new File(path)); 
 		}
 		
 		prod.setManuDate(prod.getManuDate().replace("-", ""));
