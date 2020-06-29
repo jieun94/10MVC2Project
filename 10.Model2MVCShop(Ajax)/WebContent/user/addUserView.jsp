@@ -17,7 +17,8 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
-	
+	<!-- iamport.payment.js -->
+  	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 	<!--  ///////////////////////// CSS ////////////////////////// -->
 	<style>
        body > div.container{
@@ -32,8 +33,16 @@
 		//============= "가입"  Event 연결 =============
 		 $(function() {
 			//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-			$( "button.btn.btn-primary" ).on("click" , function() {
+			$( ".btn-primary:contains('가입')" ).on("click" , function() {
 				fncAddUser();
+			});
+		});	
+		
+		//============= "가입"  Event 연결 =============
+		 $(function() {
+			//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
+			$( ".btn-primary:contains('인증')" ).on("click" , function() {
+				iamport();
 			});
 		});	
 		
@@ -204,8 +213,27 @@
 			});
 		});	 */
 		
-		
-
+		function iamport(){
+			IMP.init('iamport'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+			alert("success")
+			/* 중략 */
+			IMP.certification({
+			    merchant_uid : 'merchant_' + new Date().getTime() //본인인증과 연관된 가맹점 내부 주문번호가 있다면 넘겨주세요
+			}, function(rsp) {
+			    if ( rsp.success ) {
+			         // 인증성공
+			        console.log(rsp.imp_uid);
+			        console.log(rsp.merchant_uid);
+			        alert("성공");
+			    } else {
+			         // 인증취소 또는 인증실패
+			        var msg = '인증에 실패하였습니다.';
+			        msg += '에러내용 : ' + rsp.error_msg;
+			 
+			        alert(msg);
+			    }
+			});
+		}
 	</script>		
     
 </head>
@@ -318,8 +346,9 @@
 		  
 		  <div class="form-group">
 		    <div class="col-sm-offset-4  col-sm-4 text-center">
-		      <button type="button" class="btn btn-primary"  >가 &nbsp;입</button>
-			  <button type="button" class="btn btn-default">취&nbsp;소</button>
+		      <button type="button" class="btn btn-primary">가입</button>
+			  <button type="button" class="btn btn-default">취소</button>
+			  <button type="button" class="btn btn-primary" name="iamport">인증</button>
 		    </div>
 		  </div>
 		</form>

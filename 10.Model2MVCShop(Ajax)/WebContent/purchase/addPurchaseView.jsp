@@ -53,6 +53,15 @@
 				var maxNum =$("input[name='maxNum']").val();
 				var tranNum =$("input[name='tranNum']").val();
 				var price = ${prod.price} * tranNum;
+				var payment = $("select[name='paymentOption']").val();
+				//alert(payment);
+				if (payment == '1') {
+					payment = 'trans';
+				} else if (payment =='2') {
+					payment = 'card';
+				} else if (payment =='3') {
+					payment = 'vbank';
+				}
 				//alert(tranNum+">"+maxNum);
 				//alert(price);
 				if(parseInt(tranNum) > parseInt(maxNum)){
@@ -64,12 +73,12 @@
 	
 					IMP.request_pay({
 					    pg : 'inicis', // version 1.1.0부터 지원.
-					    pay_method : 'card',
+					    pay_method : payment,
 					    merchant_uid : 'merchant_' + new Date().getTime(),
 					    name : '주문명:결제테스트',
 					    amount : price, //판매 가격
 					    buyer_email : 'iamport@siot.do',
-					    buyer_name : '최지은',
+					    buyer_name : '안보현',
 					    buyer_tel : '010-1234-5678',
 					    buyer_addr : '서울특별시 강남구 삼성동',
 					    buyer_postcode : '123-456'
@@ -167,8 +176,9 @@
 				    <label for="paymentOption" class="col-sm-3 col-md-2 control-label text-left">구매방법</label>
 				    <div class="col-sm-4 col-md-10">
 				    	<select 	name="paymentOption"		class="form-control" >
-							<option value="1" selected="selected">현금구매</option>
+							<option value="1" selected="selected">실시간계좌이체</option>
 							<option value="2">신용구매</option>
+							<option value="3">가상계좌</option>
 						</select>
 				    </div>
 				</div>

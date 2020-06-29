@@ -50,7 +50,7 @@ public class ProductController {
 	@Value("#{commonProperties['pageSize']}")
 	int pageSize;
 	
-	@Value("#{commonProperties['path2']}")
+	@Value("#{commonProperties['path']}")
 	String path;
 	
 	@RequestMapping(value="addProduct", method = RequestMethod.GET)
@@ -75,10 +75,13 @@ public class ProductController {
 			
 			prod.setFileName(cmf.getOriginalFilename());
 		    	
-	    	File f = new File(path);
-	    	cmf.transferTo(f);
+	    	//File f = new File(path);
+	    	//cmf.transferTo(f);
 	    	
-	    	 BufferedImage image = ImageIO.read(new File(path)); 
+	    	 
+		}else {
+			
+			 BufferedImage image = ImageIO.read(new File(path+"3.3.png")); 
 			 Graphics g = image.getGraphics(); 
 			 g.setColor(Color.black);
 			 g.setFont(g.getFont().deriveFont(30f)); 
@@ -87,7 +90,7 @@ public class ProductController {
 			 g.drawString("ÀúÀÚ¸í", 750, 170); 
 			 g.dispose(); 
 
-			 ImageIO.write(image, "png", new File(path)); 
+			 ImageIO.write(image, "png", new File("3.3.png")); 
 		}
 		
 		prod.setManuDate(prod.getManuDate().replace("-", ""));
