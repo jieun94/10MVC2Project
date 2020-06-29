@@ -70,18 +70,17 @@ public class ProductController {
 		CommonsMultipartFile cmf = (CommonsMultipartFile) files.get("file");
 		
 		if (cmf.getSize()!=0) {
+			String originalFileName = cmf.getOriginalFilename();
+			//path += cmf.getOriginalFilename();
+			String newFileName = originalFileName.substring(originalFileName.indexOf("."))+"_result";
+			String fileExt = originalFileName.substring(originalFileName.lastIndexOf("."));
 			
-			path += cmf.getOriginalFilename();
-			
-			prod.setFileName(cmf.getOriginalFilename());
+			prod.setFileName(newFileName+fileExt);
 		    	
-	    	//File f = new File(path);
-	    	//cmf.transferTo(f);
+	    	File f = new File(path);
+	    	cmf.transferTo(f);
 	    	
-	    	 
-		}else {
-			
-			 BufferedImage image = ImageIO.read(new File(path+"3.3.png")); 
+	    	 BufferedImage image = ImageIO.read(new File(path+originalFileName)); 
 			 Graphics g = image.getGraphics(); 
 			 g.setColor(Color.black);
 			 g.setFont(g.getFont().deriveFont(30f)); 
@@ -90,7 +89,7 @@ public class ProductController {
 			 g.drawString("ÀúÀÚ¸í", 750, 170); 
 			 g.dispose(); 
 
-			 ImageIO.write(image, "png", new File("3.3.png")); 
+			 ImageIO.write(image, "png", new File(path+newFileName)); 
 		}
 		
 		prod.setManuDate(prod.getManuDate().replace("-", ""));
