@@ -1,10 +1,10 @@
 package com.model2.mvc.web.product;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.net.URL;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
@@ -70,26 +70,30 @@ public class ProductController {
 		CommonsMultipartFile cmf = (CommonsMultipartFile) files.get("file");
 		
 		if (cmf.getSize()!=0) {
+			//원본 파일명
 			String originalFileName = cmf.getOriginalFilename();
-			//path += cmf.getOriginalFilename();
-			String newFileName = originalFileName.substring(originalFileName.indexOf("."))+"_result";
+			//확장자를 제외한 새로운 파일명
+			String newFileName = originalFileName.substring(0, originalFileName.lastIndexOf("."))+"_result";
+			//파일 확장자
 			String fileExt = originalFileName.substring(originalFileName.lastIndexOf("."));
-			
 			prod.setFileName(newFileName+fileExt);
 		    	
-	    	File f = new File(path);
+	    	File f = new File(path+originalFileName);
 	    	cmf.transferTo(f);
 	    	
-	    	 BufferedImage image = ImageIO.read(new File(path+originalFileName)); 
-			 Graphics g = image.getGraphics(); 
-			 g.setColor(Color.black);
-			 g.setFont(g.getFont().deriveFont(30f)); 
-			 g.drawString("Hello World!", 570, 130); 
-			 g.setFont(g.getFont().deriveFont(20f)); 
-			 g.drawString("저자명", 750, 170); 
-			 g.dispose(); 
-
-			 ImageIO.write(image, "png", new File(path+newFileName)); 
+	    	BufferedImage image = ImageIO.read(new File(path+originalFileName)); 
+			Graphics g = image.getGraphics(); 
+			Font titleFont = new Font("Serif", Font.PLAIN, 30);
+			Font nameFont = new Font("Serif", Font.PLAIN, 15);
+			g.setColor(Color.black);
+			g.setFont(titleFont); 
+			g.drawString("Hello World!", 570, 130); 
+			g.setFont(nameFont); 
+			g.drawString("저자명", 750, 170); 
+			g.dispose(); 
+			
+			//텍스트 합성 이미지 생성
+			ImageIO.write(image, "png", new File(path+newFileName+fileExt)); 
 		}
 		
 		prod.setManuDate(prod.getManuDate().replace("-", ""));
