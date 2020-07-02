@@ -27,6 +27,13 @@
 							#{fileName:VARCHAR} , SYSDATE, #{prodNum} )
 	 </insert>
 	 
+	  <select id="getProdNo" resultType="int">
+	 	SELECT
+	 	*
+	 	FROM (SELECT prod_no FROM product ORDER BY reg_date desc)
+	 	WHERE rownum = 1
+	 </select>
+	 
 	 <!-- SQL : SELECT ONE -->
 	 <select 	id="getProduct"	parameterType="int"	resultMap="prodSelectMap">
 		SELECT
