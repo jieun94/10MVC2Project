@@ -68,7 +68,13 @@
 		       <h3 class=" text-info">상품등록</h3>
 		       <h5 class="text-muted">상품 등록이 완료 되었습니다.</h5>
 		    </div>
-		
+		    
+			<div class="row">
+		  		<div class="col-xs-4 col-md-2"><strong>상품 번호</strong></div>
+				<div class="col-xs-8 col-md-4">${prod.prodNo}</div>
+			</div>
+			
+			<hr/>
 			<div class="row">
 		  		<div class="col-xs-4 col-md-2"><strong>상 품 명</strong></div>
 				<div class="col-xs-8 col-md-4">${prod.prodName}</div>

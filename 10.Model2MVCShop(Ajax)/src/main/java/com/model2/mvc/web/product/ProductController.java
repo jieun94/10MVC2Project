@@ -100,6 +100,8 @@ public class ProductController {
 		
 		prodService.addProduct(prod);
 		
+		prod.setProdNo(prodService.getProdNo());
+		
 		return "forward:/product/addProduct.jsp";
 	}
 	

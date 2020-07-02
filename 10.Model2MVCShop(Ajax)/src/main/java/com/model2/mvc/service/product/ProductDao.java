@@ -9,6 +9,8 @@ public interface ProductDao {
 
 	public void insertProduct(Product product) throws Exception;
 	
+	public int getProdNo() throws Exception;
+	
 	public Product getProduct(int productNo) throws Exception;
 	
 	public List<Product> getProductList(Search search) throws Exception;

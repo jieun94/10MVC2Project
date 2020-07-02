@@ -36,6 +36,10 @@ public class ProductServiceImpl implements ProductService{
 		productDao.insertProduct(product);
 	}
 
+	public int getProdNo() throws Exception{
+		return productDao.getProdNo();
+	}
+	
 	public Product getProduct(int prodNo) throws Exception {
 		return productDao.getProduct(prodNo);
 	}
