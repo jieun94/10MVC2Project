@@ -87,6 +87,25 @@
 					self.location = "javascript:history.go(-1)"
 				});
 			});	
+			
+			//============= radio 처리 =====================
+            $(function() {
+                $("#freeTemplate").show();
+                $("#fileUpload").hide();
+                  
+                $("input[value='freeTemplate']").on("click", function(){
+                    $("#fileUpload").hide();
+                    $("#freeTemplate").show();
+                });
+            });
+                
+            $(function() {
+                $("input[value='fileUpload']").on("click", function(){
+                    $("#fileUpload").show();
+                    $("#freeTemplate").hide();
+                });
+            });
+                
 		</script>
 	</head>
 	
@@ -105,18 +124,21 @@
 			
 			<!-- form Start /////////////////////////////////////-->
 			<form class="form-horizontal">
+			
 				<div class="form-group">
 				    <label for="prodName" class="col-sm-offset-1 col-sm-3 control-label">상 품 명</label>
 				    <div class="col-sm-4">
 				      <input type="text" class="form-control" id="prodName" name="prodName">
 				    </div>
 				</div>
+				
 				<div class="form-group">
 				    <label for="prodDetail" class="col-sm-offset-1 col-sm-3 control-label">상품상세정보</label>
 				    <div class="col-sm-4">
 				      <input type="text" class="form-control" id="prodDetail" name="prodDetail">
 				    </div>
 				</div>
+				
 				<div class="form-group">
 				    <label for="manuDate" class="col-sm-offset-1 col-sm-3 control-label">제조일자</label>
 				    <div class="col-sm-4">
@@ -125,6 +147,7 @@
 											onclick="show_calendar('document.detailForm.manuDate', document.detailForm.manuDate.value)"/> -->
 				    </div>
 				</div>
+				
 				<div class="form-group">
 				    <label for="price" class="col-sm-offset-1 col-sm-3 control-label">가격</label>
 				    <div class="col-sm-4">
@@ -134,6 +157,7 @@
 			      		<p>원</p>
 			    	</div>
 				</div>
+				
 				<div class="form-group">
 				    <label for="prodNum" class="col-sm-offset-1 col-sm-3 control-label">수량</label>
 				    <div class="col-sm-4">
@@ -143,10 +167,30 @@
 			      		<p>개</p>
 			    	</div>
 				</div>
+				
 				<div class="form-group">
-				    <label for="file" class="col-sm-offset-1 col-sm-3 control-label">상품이미지</label>
+				    <label for="cover" class="col-sm-offset-1 col-sm-3 control-label">표지선택</label>
 				    <div class="col-sm-4">
-				      <input type="file" class="form-control" id="file" name="file">
+                        <label>
+                            <input type="radio" name="cover" value="freeTemplate" checked> 무료 템플릿
+                        </label>
+                        <label>
+                            <input type="radio" name="cover" value="fileUpload"> 직접 올리기
+                        </label>
+				    </div>
+				</div>
+                
+                <div class="form-group" id="freeTemplate">
+				    <label for="freeTemplate" class="col-sm-offset-1 col-sm-3 control-label">무료 템플릿</label>
+				    <div class="col-sm-4">
+				        ㅇㅇ
+				    </div>
+				</div>
+                
+                <div class="form-group" id="fileUpload">
+				    <label for="fileUpload" class="col-sm-offset-1 col-sm-3 control-label">직접 올리기</label>
+				    <div class="col-sm-4">
+				        <input type="file" class="form-control" id="file" name="file">
 				    </div>
 				</div>
 				
