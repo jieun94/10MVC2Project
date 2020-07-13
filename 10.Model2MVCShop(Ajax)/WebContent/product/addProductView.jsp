@@ -120,8 +120,35 @@
       	   	        tabsize: 1,
       	   	        height: 300,
       	   	     	lang: 'ko-KR' // default: 'en-US'
+      	   	     	callbacks: {	//여기 부분이 이미지를 첨부하는 부분
+    					onImageUpload : function(files) {
+    						
+    						for (var i = files.length - 1; i >= 0; i--) {
+    			            	sendFile(files[i], this);
+    			            }
+    					}
+    				}
           	  });
           	});
+            
+            /**
+        	* 이미지 파일 업로드
+        	*/
+        	function sendFile(file, editor) {
+        		data = new FormData();
+        		data.append("file", file);
+        		$.ajax({
+        			data : data,
+        			type : "POST",
+        			url : "/uploadSummernoteFile",
+        			contentType : false,
+        			processData : false,
+        			success : function(data) {
+                    	//항상 업로드된 파일의 url이 있어야 한다.
+        				$(editor).summernote('insertImage', data.url);
+        			}
+        		});
+        	}
                 
 		</script>
 	</head>
