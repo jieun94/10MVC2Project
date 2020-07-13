@@ -119,7 +119,7 @@
           		  placeholder: '내용을 입력하세요',
       	   	        tabsize: 1,
       	   	        height: 300,
-      	   	     	lang: 'ko-KR' // default: 'en-US'
+      	   	     	lang: 'ko-KR', // default: 'en-US'
       	   	     	callbacks: {	//여기 부분이 이미지를 첨부하는 부분
     					onImageUpload : function(files) {
     						
