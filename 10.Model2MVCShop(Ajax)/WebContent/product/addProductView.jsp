@@ -28,6 +28,13 @@
 	  	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	 	<!-- jQuery UI toolTip 사용 JS-->
 	  	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	  	
+	  	<!-- include summernote css/js -->
+		<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+		<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+		
+		<!-- include summernote-ko-KR -->
+		<script src="javascript/lang/summernote-ko-KR.js"></script>
 		
 		<!--  ///////////////////////// CSS ////////////////////////// -->
 		<style>
@@ -105,6 +112,16 @@
                     $("#freeTemplate").hide();
                 });
             });
+            
+            //summernote
+            $(function() {
+          	  $('#summernote').summernote({
+          		  placeholder: '내용을 입력하세요',
+      	   	        tabsize: 1,
+      	   	        height: 300,
+      	   	     	lang: 'ko-KR' // default: 'en-US'
+          	  });
+          	});
                 
 		</script>
 	</head>
@@ -190,7 +207,8 @@
                 <div class="form-group" id="fileUpload">
 				    <label for="fileUpload" class="col-sm-offset-1 col-sm-3 control-label">직접 올리기</label>
 				    <div class="col-sm-4">
-				        <input type="file" class="form-control" id="file" name="file">
+				        <!-- <input type="file" class="form-control" id="file" name="file"> -->
+				        <textarea id="summernote" class="form-control"></textarea>
 				    </div>
 				</div>
 				
