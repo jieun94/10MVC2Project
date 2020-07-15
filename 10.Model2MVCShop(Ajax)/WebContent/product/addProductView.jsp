@@ -17,11 +17,6 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
 		
 		
-		<!-- Bootstrap Dropdown Hover CSS -->
-	   	<link href="/css/animate.min.css" rel="stylesheet">
-	   	<link href="/css/bootstrap-dropdownhover.min.css" rel="stylesheet">
-	    <!-- Bootstrap Dropdown Hover JS -->
-	   	<script src="/javascript/bootstrap-dropdownhover.min.js"></script>
 	   
 	   
 	   	<!-- jQuery UI toolTip 사용 CSS-->
@@ -34,7 +29,7 @@
 		<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 		
 		<!-- include summernote-ko-KR -->
-		<script src="javascript/lang/summernote-ko-KR.js"></script>
+		<!-- <script src="/javascript/lang/summernote-ko-KR.js"></script> -->
 		
 		<!--  ///////////////////////// CSS ////////////////////////// -->
 		<style>
@@ -48,11 +43,11 @@
 			function fncAddProduct(){
 				
 				var name=$("input[name='prodName']").val();
-				var detail=$("input[name='prodDetail']").val();
+				var detail = $('textarea[name="prodDetail"]').val($('#summernote').summernote('code'));
 				var manuDate=$("input[name='manuDate']").val();
 				var price=$("input[name='price']").val();
 				var prodNum=$("input[name='prodNum']").val();
-	
+				
 				if(name == null || name.length<1){
 					alert("상품명은 반드시 입력하여야 합니다.");
 					return;
@@ -74,8 +69,7 @@
 					return;
 				}
 				
-				//document.detailForm.action='/product/addProduct';
-				//document.detailForm.submit();
+    			$('textarea[name="prodDetail"]').val($('#summernote').summernote('code'));
 				$("form").attr("method" , "POST").attr("action" , "/product/addProduct").attr("enctype","multipart/form-data").submit();
 			}
 			
@@ -115,20 +109,28 @@
             
             //summernote
             $(function() {
-          	  $('#summernote').summernote({
+          	  	$('#summernote').summernote({
           		  placeholder: '내용을 입력하세요',
       	   	        tabsize: 1,
       	   	        height: 300,
       	   	     	lang: 'ko-KR', // default: 'en-US'
       	   	     	callbacks: {	//여기 부분이 이미지를 첨부하는 부분
-    					onImageUpload : function(files) {
-    						
+    					onImageUpload : function(files, editor, welEditable) {
+							console.log(files);
+	   			        	console.log(editor);
+	   			        	var opt = {};
     						for (var i = files.length - 1; i >= 0; i--) {
     			            	sendFile(files[i], this);
     			            }
     					}
     				}
-          	  });
+          	  	});
+          		$("div.note-editable").on('drop',function(e){
+                for(i=0; i< e.originalEvent.dataTransfer.files.length; i++){
+                	sendFile(e.originalEvent.dataTransfer.files[i],$("#summernote")[0]);
+                }
+               e.preventDefault();
+          })
           	});
             
             /**
@@ -137,15 +139,24 @@
         	function sendFile(file, editor) {
         		data = new FormData();
         		data.append("file", file);
+        		
         		$.ajax({
         			data : data,
         			type : "POST",
-        			url : "/uploadSummernoteFile",
+        			url : "/product/json/addProduct",
+        			cache: false,
         			contentType : false,
         			processData : false,
         			success : function(data) {
                     	//항상 업로드된 파일의 url이 있어야 한다.
-        				$(editor).summernote('insertImage', data.url);
+                    	//alert(data.url);
+                    	var data = data.url;
+                    	
+                    	setTimeout(function() {
+							//alert('http://webisfree.com');
+                    		$(editor).summernote('insertImage', data.url);
+						}, 1000);
+        				
         			}
         		});
         	}
@@ -179,7 +190,9 @@
 				<div class="form-group">
 				    <label for="prodDetail" class="col-sm-offset-1 col-sm-3 control-label">상품상세정보</label>
 				    <div class="col-sm-4">
-				      <input type="text" class="form-control" id="prodDetail" name="prodDetail">
+				      <!-- <input type="text" class="form-control" id="prodDetail" name="prodDetail"> -->
+							<textarea id="prodDetail" name="prodDetail" class="summernote" style="display: none;"></textarea>
+							<div id="summernote"></div>
 				    </div>
 				</div>
 				
@@ -234,8 +247,7 @@
                 <div class="form-group" id="fileUpload">
 				    <label for="fileUpload" class="col-sm-offset-1 col-sm-3 control-label">직접 올리기</label>
 				    <div class="col-sm-4">
-				        <!-- <input type="file" class="form-control" id="file" name="file"> -->
-				        <textarea id="summernote" class="form-control"></textarea>
+				        <input type="file" class="form-control" id="file" name="file">
 				    </div>
 				</div>
 				

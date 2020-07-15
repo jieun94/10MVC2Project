@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class Product {
 	
-	private MultipartFile file;
+	//private MultipartFile file;
 	private String fileName;
 	private String manuDate;
 	private int price;
@@ -29,13 +29,13 @@ public class Product {
 	public void setProTranCode(String proTranCode) {
 		this.proTranCode = proTranCode;
 	}
-	public MultipartFile getFile() {
-		return file;
-	}
-
-	public void setFileName(MultipartFile file) {
-		this.file = file;
-	}
+//	public MultipartFile getFile() {
+//		return file;
+//	}
+//
+//	public void setFileName(MultipartFile file) {
+//		this.file = file;
+//	}
 
 	public String getFileName() {
 		return fileName;
@@ -44,14 +44,6 @@ public class Product {
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
-	
-//	public String getFileName() {
-//		return fileName;
-//	}
-//
-//	public void setFileName(String fileName) {
-//		this.fileName = fileName;
-//	}
 
 	public String getManuDate() {
 		return manuDate;
@@ -115,13 +107,13 @@ public class Product {
 		this.purchaseCount = purchaseCount;
 	}
 	
-	public void setFile(MultipartFile file) {
-		this.file = file;
-	}
+//	public void setFile(MultipartFile file) {
+//		this.file = file;
+//	}
 
 	// Override
 	public String toString() {
-		return "ProductVO : [fileName]" + fileName
+		return "ProductVO : [fileName]" + fileName 
 				+ "[manuDate]" + manuDate+ "[price]" + price + "[prodDetail]" + prodDetail
 				+ "[prodName]" + prodName + "[prodNo]" + prodNo+ "[tranNo]" + tranNo
 				+ "[prodNum]" + prodNum + "[regDate]" + regDate + "[purchaseCount]" + purchaseCount;

@@ -102,7 +102,7 @@ public class ProductController {
 		
 		prod.setProdNo(prodService.getProdNo());
 		
-		return "forward:/product/addProduct.jsp";
+		return "forward:/product/getProduct.jsp";
 	}
 	
 	@RequestMapping(value="getProduct", method=RequestMethod.GET )
